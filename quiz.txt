@@ -1,0 +1,1 @@
+if results for various types are the same, picks a random type from the equal results

@@ -47,10 +47,10 @@ var quiz = [
   {
       "question" : "Which could be your motto",
       "choices" : [
-        "\“Live according to your principles\”",
-        "\“Love moves the world\”",
-        "\“Question everything\”",
-        "\“Getting lost is half the fun\”"
+        "Live according to your principles",
+        "Love moves the world",
+        "Question everything",
+        "Getting lost is half the fun"
       ]
   },
   {
@@ -88,6 +88,7 @@ var quizOver = false;
 $(document).ready(function () {
   displayQuestion();
   $(this).find(".quizMessage").hide();
+  $(this).find(".results").hide();
 
   $(this).find(".nextButton").on("click", function () {
     if (!quizOver) {
@@ -105,6 +106,13 @@ $(document).ready(function () {
           displayQuestion();
         } else {
           quizOver = true;
+          $(document).find(".quizMessage").hide();
+          $(document).find(".choiceList").hide();
+          $(document).find(".question").hide();
+          displayResults();
+          $(document).find(".results").show();
+          $(document).find(".nextButton").hide();
+
           console.log(answers);
         }
       }
@@ -123,11 +131,70 @@ function displayQuestion() {
   var numChoices = quiz[currentQuestion].choices.length;
 
   $(questionDiv).text(question);
-  $(choiceDive).find("li").remove();
+  $(choiceDiv).find("li").remove();
 
   var choice;
   for (var i = 0; i < numChoices; i++) {
     choice = quiz[currentQuestion].choices[i];
     $('<li><input type="radio" value=' + i + ' name="dynradio" />' + choice + '</li>').appendTo(choiceDiv);
   }
+}
+
+function displayResults() {
+  var results = [
+    {type: "a", total: 0},
+    {type: "b", total: 0},
+    {type: "c", total: 0},
+    {type: "d", total: 0}
+  ]
+
+  for (var i = 0; i < answers.length; i++) {
+    if (answers[i] == "0") {
+      results[0].total++;
+    }
+    else if (answers[i] == "1") {
+      results[1].total++;
+    }
+    else if (answers[i] == "2") {
+      results[2].total++;
+    }
+    else {
+      results[3].total++;
+    }
+  }
+
+  var currentHigh = 0;
+  var type = null;
+
+  for (var i = 0; i < results.length; i++) {
+    if (results[i].total > currentHigh) {
+      type = results[i].type;
+      currentHigh = results[i].total;
+    }
+    //if equal pick a random one
+    else if (results[i].total == currentHigh) {
+      if (Math.random() >= 0.5) {
+        type = results[i].type;
+      }
+    }
+  }
+
+  if (type == "a") {
+    $(document).find("#resultsHead").text("The Officer");
+    $(document).find("#resultsDiv").text("You are The Officer! You value persistence, organization, and good judgment. You learn best by following clearly outlined procedures and committing to a study plan.");
+  }
+  else if (type == "b") {
+    $(document).find("#resultsHead").text("The Communicator");
+    $(document).find("#resultsDiv").text("You are The Communicator! You value relationships, compassion, and engaging conversation. You learn best by talking and writing about topics and collaborating with others.");
+  }
+  else if (type == "c") {
+    $(document).find("#resultsHead").text("The Scientist");
+    $(document).find("#resultsDiv").text("You are The Scientist! You value facts, fascination, and solving problems. You learn best by researching interesting ideas and testing yourself regularly.");
+  }
+  else {
+    $(document).find("#resultsHead").text("The Adventurer");
+    $(document).find("#resultsDiv").text("You are The Adventurer! You value excitement, intrigue, and new experiences. You learn best through hands­on projects and visualization.");
+  }
+
+  $(document).find("#subscribeMessage").text("Sign up to receive the Uncommon Learning Newsletter and we will send you your complete personality profile!");
 }

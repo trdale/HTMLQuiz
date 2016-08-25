@@ -1,11 +1,60 @@
 <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script type='text/javascript' src="quiz.js"></script>
 
 <div class="quizDiv">
   <h1>Personality Quiz</h1>
 
   <div class="question"></div>
   <ul class="choiceList"></ul>
+  <h2 class="results" id="resultsHead"></h2>
+  <div class="results" id="resultsDiv"></div>
+  <h3 class="results" id="subscribeMessage"></h3>
+  <div class="results" id="quizForm">
+    <div class="form-wrapper">
+      <div class="form-inner-wrapper">
+        <form autocomplete="on" action="https://rachel-wallerstedt-9haf.squarespace.com" method="POST" onsubmit="return (function(form) { Y.use ('squarespace-form-submit', 'node', function (Y) { (new Y.Squarespace.FormSubmit({ formNode: Y.Node(form) })).submit('579eaac429687f4dd9df1e87', '5778290b15d5dbc2f800efc5', 'page-5778290b15d5dbc2f800efc5') }); return false;})(this)">
+          <div class="field-list clear">
+            <fieldset id="name-yui_3_17_2_1_1470014984831_74997" class="form-item fields name required">
+            <div class="title">Name <span class="required">*</span></div>
+              <legend>Name</legend>
+              <div class="field first-name">
+                  <label class="caption"><input class="field-element field-control" name="fname" x-autocompletetype="given-name" type="text" spellcheck="false" maxlength="30" data-title="First">First Name</label>
+              </div>
+              <div class="field last-name">
+                <label class="caption"><input class="field-element field-control" name="lname" x-autocompletetype="surname" type="text" spellcheck="false" maxlength="30" data-title="Last">Last Name</label>
+              </div>
+            </fieldset>
+            <div id="email-yui_3_17_2_1_1470014984831_75336" class="form-item field email required">
+              <label class="title" for="email-yui_3_17_2_1_1470014984831_75336-field">Email Address <span class="required">*</span></label>
+              <input class="field-element" name="email" x-autocompletetype="email" type="text" spellcheck="false" id="email-yui_3_17_2_1_1470014984831_75336-field">
+            </div>
+            <div id="select-yui_3_17_2_1_1470014984831_80753" class="form-item field select required">
+             <label class="title" for="select-yui_3_17_2_1_1470014984831_80753-field">Age of Learner <span class="required">*</span></label>
+              <select name="select-yui_3_17_2_1_1470014984831_80753-field">
+                <option value="Elementary Grades (3rd - 5th)">Elementary Grades (3rd - 5th)</option>
+                <option value="Middle School (6th-8th)">Middle School (6th-8th)</option>
+                <option value="High School (9th-12th)">High School (9th-12th)</option>
+                <option value="College Student">College Student</option>
+              </select>
+            </div>
+            <div id="checkbox-yui_3_17_2_1_1470014984831_88885" class="form-item field checkbox">
+              <div class="title" for="checkbox-yui_3_17_2_1_1470014984831_88885-field">Send me info about:</div>
+              <div class="option"><label><input type="checkbox" name="checkbox-yui_3_17_2_1_1470014984831_88885-field" value="21st Century Research"> 21st Century Research</label></div>
+              <div class="option"><label><input type="checkbox" name="checkbox-yui_3_17_2_1_1470014984831_88885-field" value="Executive Functions"> Executive Functions</label></div>
+              <div class="option"><label><input type="checkbox" name="checkbox-yui_3_17_2_1_1470014984831_88885-field" value="Communication Skills"> Communication Skills</label></div>
+            </div>
+          </div>
+          <div class="form-button-wrapper form-button-wrapper--align-left">
+            <input class="button sqs-system-button sqs-editable-button" type="submit" value="Submit">
+          </div>
+          <div class="hidden form-submission-text">Thank you!</div>
+          <div class="hidden form-submission-html" data-submission-html=""></div>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="quizMessage"></div>
-  <div class="nextButton">Next Question</div>
+  <br>
+  <button type="button" class="nextButton">Next Question</button>
   <br>
 </div>
